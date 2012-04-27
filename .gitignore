@@ -1,6 +1,10 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+smarttest/gwt-unitCache
+smarttest/lib
+smarttest/war/smarttest
+smarttest/war/WEB-INF/classes
+smarttest/war/WEB-INF/deploy
+smarttest/war/WEB-INF/lib
+smarttest/smarttest.war
+smarttest/.gwt
+smarttest/.build.xml.swp 
+smarttest/.settings
