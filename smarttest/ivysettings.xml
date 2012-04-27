@@ -3,11 +3,11 @@
 
 	<resolvers>
 		<ibiblio name="public" m2compatible="true" />
-		<ibiblio name="revere" m2compatible="true"
+		<ibiblio name="smartgwt" m2compatible="true"
 			root="http://www.smartclient.com/maven2/" />
 
 		<chain name="default" returnFirst="true">
-			<resolver ref="revere" />
+			<resolver ref="smartgwt" />
 			<resolver ref="public" />
 		</chain>
 
