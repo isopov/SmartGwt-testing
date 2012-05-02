@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.client;
+package com.sopovs.moradanen.smartgwt.client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.sopovs.moradanen.client.lib.GenericGwtRpcDataSource;
 import com.sopovs.moradanen.shared.Person;
+import com.sopovs.moradanen.smartgwt.client.lib.GenericGwtRpcDataSource;
 
 public class PersonDataSource extends GenericGwtRpcDataSource<Person, Record, PersonGwtRpcServiceAsync> {
 

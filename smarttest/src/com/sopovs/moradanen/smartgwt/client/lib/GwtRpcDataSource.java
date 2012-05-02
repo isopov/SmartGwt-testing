@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.client.lib;
+package com.sopovs.moradanen.smartgwt.client.lib;
 
 import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;

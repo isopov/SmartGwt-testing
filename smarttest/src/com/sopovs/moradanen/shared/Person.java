@@ -1,6 +1,7 @@
 package com.sopovs.moradanen.shared;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
@@ -11,6 +12,8 @@ public class Person implements IsSerializable, Serializable {
 	private String firstName;
 	private String secondName;
 	private String description;
+	//TODO make this ManyToMany JPA relationship
+	private List<Company> companies;
 
 	public Person() {
 
@@ -53,6 +56,14 @@ public class Person implements IsSerializable, Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
 	}
 
 }

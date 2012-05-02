@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>dataServlet</servlet-name>
-    <servlet-class>com.sopovs.moradanen.server.PersonGwtRpcServiceImpl</servlet-class>
+    <servlet-class>com.sopovs.moradanen.smartgwt.server.PersonGwtRpcServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>

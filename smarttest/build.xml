@@ -38,7 +38,7 @@
       <classpath>
         <pathelement location="src"/>
         <path refid="project.class.path"/>
-	<pathelement location="lib/validation-api-1.0.0.GA-sources.jar" />
+	<pathelement location="lib/validation-api-1.0.0.GA.jar" />
 	<pathelement location="lib/smartgwt-3.0.jar" /> <!-- Contains sources -->
       </classpath>
       <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->

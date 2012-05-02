@@ -1,10 +1,14 @@
 package com.sopovs.moradanen.shared;
 
+import java.util.List;
+
 public class Sector {
 
 	private String id;
 	private String parentId;
 	private String name;
+	//TODO make this ManyToMany JPA relationship
+	private List<Company> focusedCompanies;
 
 	public Sector() {
 	}
@@ -37,6 +41,14 @@ public class Sector {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Company> getFocusedCompanies() {
+		return focusedCompanies;
+	}
+
+	public void setFocusedCompanies(List<Company> focusedCompanies) {
+		this.focusedCompanies = focusedCompanies;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.server;
+package com.sopovs.moradanen.smartgwt.server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Random;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.sopovs.moradanen.client.PersonGwtRpcService;
 import com.sopovs.moradanen.shared.Person;
+import com.sopovs.moradanen.smartgwt.client.PersonGwtRpcService;
 
 public class PersonGwtRpcServiceImpl extends RemoteServiceServlet implements PersonGwtRpcService {
 	private static final long serialVersionUID = 1L;

@@ -1,11 +1,10 @@
-package com.sopovs.moradanen.shared.lib;
+package com.sopovs.moradanen.shared.smartgwt.lib;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-import com.sopovs.moradanen.client.lib.GenericGwtRpcDataSource;
 
 /**
  * Represents a {@link List} for transferring Data Transfer Objects using {@link GenericGwtRpcDataSource} in paged mode.

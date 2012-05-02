@@ -5,3 +5,4 @@
 3. Add similar functionality implemented with GWT + requestfactory
 4. Add similar functionality implemented with Vaadin
 5. Add support for real persistence with Appengine+JPA(JPA2)
+6. Add support for full Ant-based build and deployment
