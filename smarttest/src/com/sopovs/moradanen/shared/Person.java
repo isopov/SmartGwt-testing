@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class TestPojo implements IsSerializable, Serializable {
+public class Person implements IsSerializable, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String id;
@@ -12,11 +12,11 @@ public class TestPojo implements IsSerializable, Serializable {
 	private String secondName;
 	private String description;
 
-	public TestPojo() {
+	public Person() {
 
 	}
 
-	public TestPojo(String id, String firstName, String secondName, String description) {
+	public Person(String id, String firstName, String secondName, String description) {
 		this.id = id;
 		this.firstName = firstName;
 		this.secondName = secondName;

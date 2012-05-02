@@ -8,9 +8,9 @@ import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.sopovs.moradanen.client.lib.GenericGwtRpcDataSource;
-import com.sopovs.moradanen.shared.TestPojo;
+import com.sopovs.moradanen.shared.Person;
 
-public class TestPojoDataSource extends GenericGwtRpcDataSource<TestPojo, Record, TestPojoGwtRpcServiceAsync> {
+public class PersonDataSource extends GenericGwtRpcDataSource<Person, Record, PersonGwtRpcServiceAsync> {
 
 	private static final String DESCRIPTION = "description";
 	private static final String SECOND_NAME = "secondName";
@@ -28,7 +28,7 @@ public class TestPojoDataSource extends GenericGwtRpcDataSource<TestPojo, Record
 	}
 
 	@Override
-	public void copyValues(Record from, TestPojo to) {
+	public void copyValues(Record from, Person to) {
 		to.setId(from.getAttribute(ID));
 		to.setFirstName(from.getAttribute(FIRST_NAME));
 		to.setSecondName(from.getAttribute(SECOND_NAME));
@@ -36,7 +36,7 @@ public class TestPojoDataSource extends GenericGwtRpcDataSource<TestPojo, Record
 	}
 
 	@Override
-	public void copyValues(TestPojo from, Record to) {
+	public void copyValues(Person from, Record to) {
 		to.setAttribute(ID, from.getId());
 		to.setAttribute(FIRST_NAME, from.getFirstName());
 		to.setAttribute(SECOND_NAME, from.getSecondName());
@@ -44,8 +44,8 @@ public class TestPojoDataSource extends GenericGwtRpcDataSource<TestPojo, Record
 	}
 
 	@Override
-	public TestPojoGwtRpcServiceAsync getServiceAsync() {
-		return GWT.create(TestPojoGwtRpcService.class);
+	public PersonGwtRpcServiceAsync getServiceAsync() {
+		return GWT.create(PersonGwtRpcService.class);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class TestPojoDataSource extends GenericGwtRpcDataSource<TestPojo, Record
 	}
 
 	@Override
-	public TestPojo getNewDataObjectInstance() {
-		return new TestPojo();
+	public Person getNewDataObjectInstance() {
+		return new Person();
 	}
 }

@@ -1,0 +1,7 @@
+1. Extend smart gwt usage:
+1.1. Use TreeGrids
+1.2. Use criterias to load into table data depending on the selection in other table (tree)
+2. Rename project and repo
+3. Add similar functionality implemented with GWT + requestfactory
+4. Add similar functionality implemented with Vaadin
+5. Add support for real persistence with Appengine+JPA(JPA2)

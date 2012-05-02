@@ -9,5 +9,8 @@
 			conf="*->*,!sources,!javadoc" />
 		<dependency org="com.smartgwt" name="smartgwt-skins" rev="3.0"
 			conf="*->*,!sources,!javadoc" />
+		<dependency org="javax.validation" name="validation-api" rev="1.0.0.GA" >
+    			<artifact name="validation-api" type="jar" />
+		</dependency>
 	</dependencies>
 </ivy-module>

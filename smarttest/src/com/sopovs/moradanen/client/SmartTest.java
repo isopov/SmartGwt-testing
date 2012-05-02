@@ -14,7 +14,7 @@ public class SmartTest implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
-		DataSource dataSource = new TestPojoDataSource();
+		DataSource dataSource = new PersonDataSource();
 		ListGrid grid = new ListGrid();
 		grid.setDataSource(dataSource);
 		grid.setWidth100();
