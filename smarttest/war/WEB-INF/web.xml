@@ -36,6 +36,25 @@
     <url-pattern>/smarttest/companyData</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>Vaadin Application</servlet-name>
+  	<servlet-class>
+  	  com.vaadin.terminal.gwt.server.GAEApplicationServlet
+  	</servlet-class>
+  	<init-param>
+      <description>Vaadin application class to start</description>
+      <param-name>application</param-name>
+      <param-value>
+        com.sopovs.moradanen.vaadin.MyprojectApplication
+      </param-value>
+ </init-param>
+ </servlet>
+ 
+ <servlet-mapping>
+ 	<servlet-name>Vaadin Application</servlet-name>
+ 	<url-pattern>/VAADIN/*</url-pattern>
+ </servlet-mapping>
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>

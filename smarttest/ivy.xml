@@ -15,5 +15,8 @@
 		<dependency org="javax.validation" name="validation-api" rev="1.0.0.GA" >
     			<artifact name="validation-api" type="jar" />
 		</dependency>
+		<dependency org="com.vaadin" name="vaadin" rev="6.7.8" >
+    			<artifact name="vaadin" type="jar" />
+		</dependency>
 	</dependencies>
 </ivy-module>

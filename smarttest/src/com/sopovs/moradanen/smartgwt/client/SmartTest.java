@@ -45,7 +45,7 @@ public class SmartTest implements EntryPoint {
 			headerLayout.setMembersMargin(10);
 			headerLayout.addMember(new Anchor("RequestFactory", "RfTest.html"));
 			headerLayout.addMember(new Anchor("SmartGwt", "SmartTest.html"));
-			headerLayout.addMember(new Anchor("Vaaadin", "VaadinTest.html"));
+			headerLayout.addMember(new Anchor("Vaaadin", "VAADIN"));
 			rootLayout.addMember(headerLayout);
 		}
 		{
