@@ -48,6 +48,7 @@
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg line="${gwt.args}"/>
       <arg value="com.sopovs.moradanen.SmartTest"/>
+      <arg value="com.sopovs.moradanen.RfTest"/>
     </java>
   </target>
 

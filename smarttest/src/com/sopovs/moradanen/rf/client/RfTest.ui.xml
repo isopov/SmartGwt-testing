@@ -1,0 +1,66 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+	<ui:style>
+		body {
+			background-color: white;
+			color: black;
+			font-family: Arial, sans-serif;
+			font-size: small;
+			margin: 8px;
+			margin-top: 3px;
+		}
+		
+		.boxed {
+			border: thin solid black;
+			margin: 2px;
+			overflow: hidden;
+			padding: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.main {
+			margin: 5px;
+		}
+		
+		@external gwt-SplitLayoutPanel-VDragger;
+		.gwt-SplitLayoutPanel-VDragger {
+			cursor: row-resize;
+		}
+	</ui:style>
+	<g:DockLayoutPanel unit="EM" stylePrimaryName="{style.main}">
+		<g:north size="2">
+			<g:HTML>
+				<table>
+					<thead>
+						<tr>
+							<th>
+								<a href="RfTest.html">RequestFactory</a>
+							</th>
+							<th>
+								<a href="SmartTest.html">SmartGwt</a>
+							</th>
+							<th>
+								<a href="VaadinTest.html">Vaadin</a>
+							</th>
+						</tr>
+					</thead>
+				</table>
+			</g:HTML>
+		</g:north>
+		<g:center>
+			<g:SplitLayoutPanel>
+				<g:west size="250">
+					<g:Label  ui:field='leftPanel' />
+				</g:west>
+				<g:north size="300">
+					<g:Label ui:field="rightTopPanel" stylePrimaryName="{style.boxed}" />
+				</g:north>
+				<g:center>
+					<g:Label ui:field="rightBottomPanel" stylePrimaryName="{style.boxed}" />
+				</g:center>
+			</g:SplitLayoutPanel>
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder>

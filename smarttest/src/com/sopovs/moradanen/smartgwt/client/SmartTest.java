@@ -1,6 +1,7 @@
 package com.sopovs.moradanen.smartgwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.Anchor;
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -35,17 +36,30 @@ public class SmartTest implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
-		HLayout rootLayout = new HLayout();
+		VLayout rootLayout = new VLayout();
 		rootLayout.setWidth100();
 		rootLayout.setHeight100();
+		{
+			HLayout headerLayout = new HLayout();
+			headerLayout.setHeight("10em");
+			headerLayout.setMembersMargin(10);
+			headerLayout.addMember(new Anchor("RequestFactory", "RfTest.html"));
+			headerLayout.addMember(new Anchor("SmartGwt", "SmartTest.html"));
+			headerLayout.addMember(new Anchor("Vaaadin", "VaadinTest.html"));
+			rootLayout.addMember(headerLayout);
+		}
+		{
+			HLayout mainLayout = new HLayout();
 
-		rootLayout.addMember(createLeftPanel());
+			mainLayout.addMember(createLeftPanel());
 
-		VLayout rightLayout = new VLayout();
-		rightLayout.addMember(createRightUpperPanel());
-		rightLayout.addMember(createRightLowerpanel());
+			VLayout rightLayout = new VLayout();
+			rightLayout.addMember(createRightUpperPanel());
+			rightLayout.addMember(createRightLowerpanel());
 
-		rootLayout.addMember(rightLayout);
+			mainLayout.addMember(rightLayout);
+			rootLayout.addMember(mainLayout);
+		}
 
 		rootLayout.draw();
 	}
