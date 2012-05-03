@@ -7,14 +7,35 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>dataServlet</servlet-name>
+    <servlet-name>personServlet</servlet-name>
     <servlet-class>com.sopovs.moradanen.smartgwt.server.PersonGwtRpcServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>dataServlet</servlet-name>
-    <url-pattern>/smarttest/data</url-pattern>
+    <servlet-name>personServlet</servlet-name>
+    <url-pattern>/smarttest/personData</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>sectorServlet</servlet-name>
+    <servlet-class>com.sopovs.moradanen.smartgwt.server.SectorGwtRpcServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>sectorServlet</servlet-name>
+    <url-pattern>/smarttest/sectorData</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>companyServlet</servlet-name>
+    <servlet-class>com.sopovs.moradanen.smartgwt.server.CompanyGwtRpcServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>companyServlet</servlet-name>
+    <url-pattern>/smarttest/companyData</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>

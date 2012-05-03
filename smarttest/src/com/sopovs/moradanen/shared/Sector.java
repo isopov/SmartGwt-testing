@@ -1,8 +1,12 @@
 package com.sopovs.moradanen.shared;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Sector {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class Sector implements IsSerializable, Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private String parentId;

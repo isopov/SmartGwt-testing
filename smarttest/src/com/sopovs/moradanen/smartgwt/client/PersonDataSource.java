@@ -16,11 +16,14 @@ public class PersonDataSource extends GenericGwtRpcDataSource<Person, Record, Pe
 	private static final String SECOND_NAME = "secondName";
 	private static final String FIRST_NAME = "firstName";
 	private static final String ID = "id";
+	public static final String COMPANY_ID = "companyId";
 
 	@Override
 	public List<DataSourceField> getDataSourceFields() {
 		List<DataSourceField> result = new ArrayList<DataSourceField>();
-		result.add(new DataSourceTextField(ID, "Id"));
+		DataSourceTextField id = new DataSourceTextField(ID, "Id");
+		id.setPrimaryKey(true);
+		result.add(id);
 		result.add(new DataSourceTextField(FIRST_NAME, "First Name"));
 		result.add(new DataSourceTextField(SECOND_NAME, "Second Name"));
 		result.add(new DataSourceTextField(DESCRIPTION, "Description Name"));
