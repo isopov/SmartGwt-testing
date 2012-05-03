@@ -69,9 +69,7 @@
      ########################################################################## -->
     <target name="resolve" description="retrieve dependencies with ivy" depends="init-ivy">
     	<!--<ivy:configure file="ivysettings.xml" />-->
-    	<ivy:settings file="ivysettings.xml">
-    		<credentials host="reveredata.com" realm="revere" username="aberezovsky" passwd="n123pr48" />
-    	</ivy:settings>
+    	<ivy:settings file="ivysettings.xml" />
         <ivy:retrieve />    	
     </target>
 

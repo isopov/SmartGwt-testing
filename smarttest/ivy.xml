@@ -5,6 +5,9 @@
 			conf="*->*,!javadoc" />
 		<dependency org="com.google.gwt" name="gwt-dev" rev="2.4.0"
 			conf="*->*,!sources,!javadoc" />
+		<dependency org="com.google.web.bindery" name="requestfactory-apt" rev="2.4.0" >
+    			<artifact name="requestfactory-apt" type="jar" />
+		</dependency>
 		<dependency org="com.smartgwt" name="smartgwt" rev="3.0"
 			conf="*->*,!sources,!javadoc" />
 		<dependency org="com.smartgwt" name="smartgwt-skins" rev="3.0"
