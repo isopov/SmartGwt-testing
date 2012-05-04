@@ -1,12 +1,26 @@
 package com.sopovs.moradanen.rf.client;
 
+import java.util.List;
+
+import com.google.gwt.cell.client.AbstractCell;
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.cellview.client.CellTree;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.AsyncDataProvider;
+import com.google.gwt.view.client.HasData;
+import com.google.gwt.view.client.ListDataProvider;
+import com.google.gwt.view.client.TreeViewModel;
+import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.sopovs.moradanen.rf.shared.SectorProxy;
+import com.sopovs.moradanen.rf.shared.TestRequestFactory;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -49,9 +63,10 @@ public class RfTest implements EntryPoint {
 	interface Binder extends UiBinder<Widget, RfTest> {
 	}
 
-	@UiField
-	//(provided = true)
-	Label leftPanel;
+	private final TestRequestFactory requestFactory = GWT.create(TestRequestFactory.class);
+
+	@UiField(provided = true)
+	CellTree leftPanel;
 
 	@UiField
 	Label rightTopPanel;
@@ -59,19 +74,128 @@ public class RfTest implements EntryPoint {
 	@UiField
 	Label rightBottomPanel;
 
+	public RfTest() {
+		requestFactory.initialize(new SimpleEventBus());
+	}
+
 	/**
 	 * This is the entry point method.
 	 */
 	@Override
 	public void onModuleLoad() {
-		//TODO
-//		leftPanel = new CellTree();
-		RootLayoutPanel.get().add(
-				GWT.<Binder> create(Binder.class).createAndBindUi(this));
-		leftPanel.setText(LOREM_IPSUM);
+		leftPanel = new CellTree(new SectorTreeViewModel(), null);
+		RootLayoutPanel.get().add(GWT.<Binder> create(Binder.class).createAndBindUi(this));
 		rightTopPanel.setText(LOREM_IPSUM);
 		rightBottomPanel.setText(LOREM_IPSUM);
 
+	}
+
+//	private static class CustomTreeModel implements TreeViewModel {
+//
+//		/**
+//		 * Get the {@link NodeInfo} that provides the children of the specified value.
+//		 */
+//		@Override
+//		public <T> NodeInfo<?> getNodeInfo(T value) {
+//			/*
+//			 * Create some data in a data provider. Use the parent value as a prefix
+//			 * for the next level.
+//			 */
+//			ListDataProvider<String> dataProvider = new ListDataProvider<String>();
+//			for (int i = 0; i < 2; i++) {
+//				dataProvider.getList().add(value + "." + String.valueOf(i));
+//			}
+//
+//			// Return a node info that pairs the data with a cell.
+//			return new DefaultNodeInfo<String>(dataProvider, new TextCell());
+//		}
+//
+//		/**
+//		 * Check if the specified value represents a leaf node. Leaf nodes cannot be opened.
+//		 */
+//		@Override
+//		public boolean isLeaf(Object value) {
+//			// The maximum length of a value is ten characters.
+//			return value.toString().length() > 10;
+//		}
+//	}
+
+	/**
+	 * The {@link TreeViewModel} used to browse expense reports.
+	 */
+	private class SectorTreeViewModel implements TreeViewModel {
+
+		/**
+		 * The department cell singleton.
+		 */
+		private final Cell<SectorProxy> sectorCell = new AbstractCell<SectorProxy>() {
+
+			@Override
+			public void render(com.google.gwt.cell.client.Cell.Context context, SectorProxy value, SafeHtmlBuilder sb) {
+				if (value == null) {
+					return;
+				}
+
+				sb.appendHtmlConstant("<h7>");
+				sb.appendEscaped(value.getName());
+				sb.appendHtmlConstant("</td></tr></h7>");
+
+			}
+		};
+
+		@Override
+		public <T> NodeInfo<SectorProxy> getNodeInfo(T value) {
+			String sectorId = null;
+			if (value != null) {
+				sectorId = ((SectorProxy) value).getId();
+			}
+
+			return new DefaultNodeInfo<SectorProxy>(new SectorListDataProvider(sectorId), sectorCell);
+
+		}
+
+		@Override
+		public boolean isLeaf(Object value) {
+			return value != null && ((SectorProxy) value).isLeaf();
+		}
+	}
+
+	/**
+	 * The {@link ListDataProvider} used for Employee lists.
+	 */
+	private class SectorListDataProvider extends AsyncDataProvider<SectorProxy> {
+
+		private final String parentId;
+
+		public SectorListDataProvider(String parentId) {
+			super(null);
+			this.parentId = parentId;
+		}
+
+		@Override
+		public void addDataDisplay(HasData<SectorProxy> display) {
+			super.addDataDisplay(display);
+
+			// Request the count anytime a view is added.
+			requestFactory.sectorRequest().findSectorsByParent(parentId).fire(
+					new Receiver<List<SectorProxy>>() {
+						@Override
+						public void onSuccess(List<SectorProxy> response) {
+							updateRowCount(response.size(), true);
+						}
+					});
+		}
+
+		@Override
+		protected void onRangeChanged(HasData<SectorProxy> view) {
+			requestFactory.sectorRequest().findSectorsByParent(parentId).fire(
+					new Receiver<List<SectorProxy>>() {
+						@Override
+						public void onSuccess(List<SectorProxy> response) {
+							updateRowData(0, response);
+						}
+					});
+		}
 	}
 
 }

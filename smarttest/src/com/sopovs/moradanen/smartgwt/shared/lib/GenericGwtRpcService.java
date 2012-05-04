@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.shared.smartgwt.lib;
+package com.sopovs.moradanen.smartgwt.shared.lib;
 
 import java.util.List;
 import java.util.Map;

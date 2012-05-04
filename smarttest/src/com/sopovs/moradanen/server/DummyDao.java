@@ -6,21 +6,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import com.sopovs.moradanen.shared.Company;
-import com.sopovs.moradanen.shared.Person;
-import com.sopovs.moradanen.shared.Sector;
+import com.sopovs.moradanen.server.domain.Company;
+import com.sopovs.moradanen.server.domain.Person;
+import com.sopovs.moradanen.server.domain.Sector;
 
 public class DummyDao {
-	public final static List<Person> PERSONS;
-	public final static List<Company> COMPANIES;
-	public final static List<Sector> SECTORS;
-
-	static {
-		Random r = new Random(228L);
-		PERSONS = createPersons(r);
-		COMPANIES = createCompanies(r);
-		SECTORS = createSectors(r);
-	}
+	private static final Random r = new Random(228L);
+	public final static List<Person> PERSONS = createPersons(r);
+	public final static List<Company> COMPANIES = createCompanies(r);
+	public final static List<Sector> SECTORS = createSectors(r);
 
 	private static List<Person> createPersons(Random r) {
 		List<Person> result = new ArrayList<Person>();
@@ -63,6 +57,7 @@ public class DummyDao {
 		for (int i = 0; i < 60; i++) {
 			Sector sec = new Sector(String.valueOf(i + 1), result.get(r.nextInt(result.size())).getId(), "Sector "
 					+ (i + 1));
+			result.get(Integer.valueOf(sec.getParentId())).getSubSectors().add(sec);
 			Set<Company> uniqueCompaniess = new HashSet<Company>();
 			for (int j = 0; j < r.nextInt(20); j++) {
 				Company com = COMPANIES.get(r.nextInt(COMPANIES.size()));

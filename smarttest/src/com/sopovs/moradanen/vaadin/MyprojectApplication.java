@@ -12,7 +12,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.TreeTable;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.VerticalSplitPanel;
 import com.vaadin.ui.Window;
 
 public class MyprojectApplication extends Application {
@@ -39,7 +38,7 @@ public class MyprojectApplication extends Application {
 
 	}
 
-	private Component createRootComponent() {
+	private static Component createRootComponent() {
 		VerticalLayout result = new VerticalLayout();
 //		result.setHeight("100%");
 		result.addComponent(createHeader());
@@ -47,7 +46,7 @@ public class MyprojectApplication extends Application {
 		return result;
 	}
 
-	private Component createBodyPanel() {
+	private static Component createBodyPanel() {
 		HorizontalSplitPanel result = new HorizontalSplitPanel();
 //		result.setSplitPosition(50); // percent
 		result.addComponent(createTreeTable());
@@ -63,7 +62,7 @@ public class MyprojectApplication extends Application {
 		return result;
 	}
 
-	private Component createHeader() {
+	private static Component createHeader() {
 		HorizontalLayout result = new HorizontalLayout();
 		result.addComponent(new Link("RequestFactory", new ExternalResource(
 				"/RfTest.html")));

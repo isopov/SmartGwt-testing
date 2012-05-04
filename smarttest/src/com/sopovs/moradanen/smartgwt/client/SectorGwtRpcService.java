@@ -1,10 +1,10 @@
 package com.sopovs.moradanen.smartgwt.client;
 
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.sopovs.moradanen.shared.Sector;
-import com.sopovs.moradanen.shared.smartgwt.lib.GenericGwtRpcService;
+import com.sopovs.moradanen.smartgwt.shared.SectorDTO;
+import com.sopovs.moradanen.smartgwt.shared.lib.GenericGwtRpcService;
 
 @RemoteServiceRelativePath("sectorData")
-public interface SectorGwtRpcService extends GenericGwtRpcService<Sector> {
+public interface SectorGwtRpcService extends GenericGwtRpcService<SectorDTO> {
 
 }

@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.shared.smartgwt.lib;
+package com.sopovs.moradanen.smartgwt.shared.lib;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -52,7 +52,7 @@
 		<g:center>
 			<g:SplitLayoutPanel>
 				<g:west size="250">
-					<g:Label  ui:field='leftPanel' />
+					<c:CellTree  ui:field='leftPanel' />
 				</g:west>
 				<g:north size="300">
 					<g:Label ui:field="rightTopPanel" stylePrimaryName="{style.boxed}" />

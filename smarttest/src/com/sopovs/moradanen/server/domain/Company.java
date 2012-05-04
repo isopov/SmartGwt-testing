@@ -1,14 +1,14 @@
-package com.sopovs.moradanen.shared;
+package com.sopovs.moradanen.server.domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import com.sopovs.moradanen.server.DummyDao;
 
-public class Company implements IsSerializable, Serializable {
-	private static final long serialVersionUID = 1L;
+public class Company {
 	private String id;
 	private String name;
+
 	//TODO make this ManyToMany JPA relationship
 	private List<Sector> focusedSectors;
 	//TODO make this ManyToMany JPA relationship
@@ -55,4 +55,29 @@ public class Company implements IsSerializable, Serializable {
 		this.workers = workers;
 	}
 
+	public String getVersion() {
+		//TODO
+		return "0";
+	}
+
+	//TODO Move this all out of here to some services
+
+	public static long countCompanies() {
+		return DummyDao.COMPANIES.size();
+	}
+
+	public static List<Company> findAllCompanies() {
+		return new ArrayList<Company>(DummyDao.COMPANIES);
+	}
+
+	public static Company findCompany(String id) {
+		if (id == null) {
+			return null;
+		}
+		return DummyDao.COMPANIES.get(Integer.valueOf(id));
+	}
+
+	public static List<Company> findCompaniesBySector(String sectorId) {
+		return new ArrayList<Company>(DummyDao.SECTORS.get(Integer.valueOf(sectorId)).getFocusedCompanies());
+	}
 }

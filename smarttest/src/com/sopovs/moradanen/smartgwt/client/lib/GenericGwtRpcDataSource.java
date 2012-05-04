@@ -21,9 +21,9 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.viewer.DetailViewerRecord;
-import com.sopovs.moradanen.shared.smartgwt.lib.GenericGwtRpcList;
-import com.sopovs.moradanen.shared.smartgwt.lib.GenericGwtRpcService;
-import com.sopovs.moradanen.shared.smartgwt.lib.GenericGwtRpcServiceAsync;
+import com.sopovs.moradanen.smartgwt.shared.lib.GenericGwtRpcList;
+import com.sopovs.moradanen.smartgwt.shared.lib.GenericGwtRpcService;
+import com.sopovs.moradanen.smartgwt.shared.lib.GenericGwtRpcServiceAsync;
 
 /**
  * Generic abstract {@link GwtRpcDataSource} implementation, supporting server-side paging and sorting. Extend this

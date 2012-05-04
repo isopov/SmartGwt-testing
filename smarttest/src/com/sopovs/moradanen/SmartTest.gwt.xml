@@ -19,6 +19,6 @@
 
   <!-- Specify the paths for translatable code                    -->
   <source path='smartgwt/client'/>
-  <source path='shared'/>
+  <source path='smartgwt/shared'/>
 
 </module>

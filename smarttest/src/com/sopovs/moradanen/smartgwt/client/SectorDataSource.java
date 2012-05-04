@@ -7,10 +7,10 @@ import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.sopovs.moradanen.shared.Sector;
 import com.sopovs.moradanen.smartgwt.client.lib.GenericGwtRpcDataSource;
+import com.sopovs.moradanen.smartgwt.shared.SectorDTO;
 
-public class SectorDataSource extends GenericGwtRpcDataSource<Sector, Record, SectorGwtRpcServiceAsync> {
+public class SectorDataSource extends GenericGwtRpcDataSource<SectorDTO, Record, SectorGwtRpcServiceAsync> {
 
 	private static final String DATASOURCE_ID = "SectorDS";
 	public static final String ID = "id";
@@ -39,14 +39,14 @@ public class SectorDataSource extends GenericGwtRpcDataSource<Sector, Record, Se
 	}
 
 	@Override
-	public void copyValues(Record from, Sector to) {
+	public void copyValues(Record from, SectorDTO to) {
 		to.setId(from.getAttribute(ID));
 		to.setParentId(from.getAttribute(PARENT_ID));
 		to.setName(from.getAttribute(NAME));
 	}
 
 	@Override
-	public void copyValues(Sector from, Record to) {
+	public void copyValues(SectorDTO from, Record to) {
 		to.setAttribute(ID, from.getId());
 		to.setAttribute(PARENT_ID, from.getParentId());
 		to.setAttribute(NAME, from.getName());
@@ -63,7 +63,7 @@ public class SectorDataSource extends GenericGwtRpcDataSource<Sector, Record, Se
 	}
 
 	@Override
-	public Sector getNewDataObjectInstance() {
-		return new Sector();
+	public SectorDTO getNewDataObjectInstance() {
+		return new SectorDTO();
 	}
 }

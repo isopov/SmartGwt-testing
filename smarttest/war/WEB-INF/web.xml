@@ -5,7 +5,26 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
+
+	<!-- RequestFactory -->
+  <servlet>
+    <servlet-name>requestFactoryServlet</servlet-name>
+    <servlet-class>com.google.web.bindery.requestfactory.server.RequestFactoryServlet</servlet-class>
+    <init-param>
+      <param-name>symbolMapsDirectory</param-name>
+      <!-- You'll need to compile with -extras and move the symbolMaps directory
+           to this location if you want stack trace deobfuscation to work -->
+      <param-value>WEB-INF/classes/symbolMaps/</param-value>
+    </init-param>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>requestFactoryServlet</servlet-name>
+    <url-pattern>/gwtRequest</url-pattern>
+  </servlet-mapping>
+  <!-- End of RequestFactory -->
+
+  <!-- SmartGwt Servlets -->
   <servlet>
     <servlet-name>personServlet</servlet-name>
     <servlet-class>com.sopovs.moradanen.smartgwt.server.PersonGwtRpcServiceImpl</servlet-class>
@@ -35,7 +54,9 @@
     <servlet-name>companyServlet</servlet-name>
     <url-pattern>/smarttest/companyData</url-pattern>
   </servlet-mapping>
+  <!-- End of SmartGwt Servlets -->
   
+  <!-- Vaadin -->
   <servlet>
   	<servlet-name>Vaadin Application</servlet-name>
   	<servlet-class>
@@ -54,6 +75,7 @@
  	<servlet-name>Vaadin Application</servlet-name>
  	<url-pattern>/VAADIN/*</url-pattern>
  </servlet-mapping>
+ <!-- End of Vaadin -->
   
   
   <!-- Default page to serve -->

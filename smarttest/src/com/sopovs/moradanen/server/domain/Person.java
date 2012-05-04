@@ -1,12 +1,11 @@
-package com.sopovs.moradanen.shared;
+package com.sopovs.moradanen.server.domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import com.sopovs.moradanen.server.DummyDao;
 
-public class Person implements IsSerializable, Serializable {
-	private static final long serialVersionUID = 1L;
+public class Person {
 
 	private String id;
 	private String firstName;
@@ -64,6 +63,31 @@ public class Person implements IsSerializable, Serializable {
 
 	public void setCompanies(List<Company> companies) {
 		this.companies = companies;
+	}
+
+	public String getVersion() {
+		//TODO
+		return "0";
+	}
+
+	//TODO Move this all out of here to some services
+	public static long countPersons() {
+		return DummyDao.PERSONS.size();
+	}
+
+	public static List<Person> findAllPersons() {
+		return new ArrayList<Person>(DummyDao.PERSONS);
+	}
+
+	public static Person findPerson(String id) {
+		if (id == null) {
+			return null;
+		}
+		return DummyDao.PERSONS.get(Integer.valueOf(id));
+	}
+
+	public static List<Person> findPersonsByCompany(String companyId) {
+		return new ArrayList<Person>(DummyDao.COMPANIES.get(Integer.valueOf(companyId)).getWorkers());
 	}
 
 }

@@ -7,10 +7,10 @@ import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.DataSourceField;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.DataSourceTextField;
-import com.sopovs.moradanen.shared.Company;
 import com.sopovs.moradanen.smartgwt.client.lib.GenericGwtRpcDataSource;
+import com.sopovs.moradanen.smartgwt.shared.CompanyDTO;
 
-public class CompanyDataSource extends GenericGwtRpcDataSource<Company, Record, CompanyGwtRpcServiceAsync> {
+public class CompanyDataSource extends GenericGwtRpcDataSource<CompanyDTO, Record, CompanyGwtRpcServiceAsync> {
 
 	public static final String ID = "id";
 	private static final String NAME = "name";
@@ -27,13 +27,13 @@ public class CompanyDataSource extends GenericGwtRpcDataSource<Company, Record, 
 	}
 
 	@Override
-	public void copyValues(Record from, Company to) {
+	public void copyValues(Record from, CompanyDTO to) {
 		to.setId(from.getAttribute(ID));
 		to.setName(from.getAttribute(NAME));
 	}
 
 	@Override
-	public void copyValues(Company from, Record to) {
+	public void copyValues(CompanyDTO from, Record to) {
 		to.setAttribute(ID, from.getId());
 		to.setAttribute(NAME, from.getName());
 	}
@@ -49,7 +49,7 @@ public class CompanyDataSource extends GenericGwtRpcDataSource<Company, Record, 
 	}
 
 	@Override
-	public Company getNewDataObjectInstance() {
-		return new Company();
+	public CompanyDTO getNewDataObjectInstance() {
+		return new CompanyDTO();
 	}
 }
