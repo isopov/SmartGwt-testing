@@ -10,15 +10,19 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.CellTree;
+import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.AsyncDataProvider;
 import com.google.gwt.view.client.HasData;
-import com.google.gwt.view.client.ListDataProvider;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.sopovs.moradanen.rf.shared.CompanyProxy;
 import com.sopovs.moradanen.rf.shared.SectorProxy;
 import com.sopovs.moradanen.rf.shared.TestRequestFactory;
 
@@ -68,11 +72,14 @@ public class RfTest implements EntryPoint {
 	@UiField(provided = true)
 	CellTree leftPanel;
 
-	@UiField
-	Label rightTopPanel;
+	@UiField(provided = true)
+	CellTable<CompanyProxy> rightTopPanel;
 
 	@UiField
 	Label rightBottomPanel;
+
+	final SingleSelectionModel<SectorProxy> selectionModel = new SingleSelectionModel<SectorProxy>();
+	private CompanyDataProvider companyDataProvider;
 
 	public RfTest() {
 		requestFactory.initialize(new SimpleEventBus());
@@ -83,42 +90,55 @@ public class RfTest implements EntryPoint {
 	 */
 	@Override
 	public void onModuleLoad() {
+
 		leftPanel = new CellTree(new SectorTreeViewModel(), null);
+		selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+
+			@Override
+			public void onSelectionChange(SelectionChangeEvent event) {
+				//TODO refrsh companyDataProvider or  rightTopPanel or something
+
+			}
+		});
+
+		rightTopPanel = createCompanyTable();
+		companyDataProvider = new CompanyDataProvider();
+		companyDataProvider.addDataDisplay(rightTopPanel);
+
 		RootLayoutPanel.get().add(GWT.<Binder> create(Binder.class).createAndBindUi(this));
-		rightTopPanel.setText(LOREM_IPSUM);
 		rightBottomPanel.setText(LOREM_IPSUM);
 
 	}
 
-//	private static class CustomTreeModel implements TreeViewModel {
-//
-//		/**
-//		 * Get the {@link NodeInfo} that provides the children of the specified value.
-//		 */
-//		@Override
-//		public <T> NodeInfo<?> getNodeInfo(T value) {
-//			/*
-//			 * Create some data in a data provider. Use the parent value as a prefix
-//			 * for the next level.
-//			 */
-//			ListDataProvider<String> dataProvider = new ListDataProvider<String>();
-//			for (int i = 0; i < 2; i++) {
-//				dataProvider.getList().add(value + "." + String.valueOf(i));
-//			}
-//
-//			// Return a node info that pairs the data with a cell.
-//			return new DefaultNodeInfo<String>(dataProvider, new TextCell());
-//		}
-//
-//		/**
-//		 * Check if the specified value represents a leaf node. Leaf nodes cannot be opened.
-//		 */
-//		@Override
-//		public boolean isLeaf(Object value) {
-//			// The maximum length of a value is ten characters.
-//			return value.toString().length() > 10;
-//		}
-//	}
+	private static CellTable<CompanyProxy> createCompanyTable() {
+		CellTable<CompanyProxy> result = new CellTable<CompanyProxy>();
+		// Create name column.
+		TextColumn<CompanyProxy> nameColumn = new TextColumn<CompanyProxy>() {
+			@Override
+			public String getValue(CompanyProxy contact) {
+				return contact.getName();
+			}
+		};
+
+		// Make the name column sortable.
+		nameColumn.setSortable(true);
+
+		// Create id column.
+		TextColumn<CompanyProxy> idColumn = new TextColumn<CompanyProxy>() {
+			@Override
+			public String getValue(CompanyProxy contact) {
+				return contact.getId();
+			}
+		};
+
+		// Make the id column sortable.
+		idColumn.setSortable(true);
+
+		// Add the columns.
+		result.addColumn(idColumn, "Id");
+		result.addColumn(nameColumn, "Name");
+		return result;
+	}
 
 	/**
 	 * The {@link TreeViewModel} used to browse expense reports.
@@ -150,7 +170,7 @@ public class RfTest implements EntryPoint {
 				sectorId = ((SectorProxy) value).getId();
 			}
 
-			return new DefaultNodeInfo<SectorProxy>(new SectorListDataProvider(sectorId), sectorCell);
+			return new DefaultNodeInfo<SectorProxy>(new SectorDataProvider(sectorId), sectorCell, selectionModel, null);
 
 		}
 
@@ -160,14 +180,11 @@ public class RfTest implements EntryPoint {
 		}
 	}
 
-	/**
-	 * The {@link ListDataProvider} used for Employee lists.
-	 */
-	private class SectorListDataProvider extends AsyncDataProvider<SectorProxy> {
+	private class SectorDataProvider extends AsyncDataProvider<SectorProxy> {
 
 		private final String parentId;
 
-		public SectorListDataProvider(String parentId) {
+		public SectorDataProvider(String parentId) {
 			super(null);
 			this.parentId = parentId;
 		}
@@ -192,6 +209,37 @@ public class RfTest implements EntryPoint {
 					new Receiver<List<SectorProxy>>() {
 						@Override
 						public void onSuccess(List<SectorProxy> response) {
+							updateRowData(0, response);
+						}
+					});
+		}
+	}
+
+	private class CompanyDataProvider extends AsyncDataProvider<CompanyProxy> {
+
+		@Override
+		public void addDataDisplay(HasData<CompanyProxy> display) {
+			super.addDataDisplay(display);
+
+//			// Request the count anytime a view is added.
+//			requestFactory.companyRequest().findCompaniesBySector(selectedSectorId).fire(
+//					new Receiver<List<CompanyProxy>>() {
+//						@Override
+//						public void onSuccess(List<CompanyProxy> response) {
+//							updateRowCount(response.size(), true);
+//						}
+//					});
+		}
+
+		@Override
+		protected void onRangeChanged(HasData<CompanyProxy> view) {
+			if (selectionModel.getSelectedObject() == null) {
+				return;
+			}
+			requestFactory.companyRequest().findCompaniesBySector(selectionModel.getSelectedObject().getId()).fire(
+					new Receiver<List<CompanyProxy>>() {
+						@Override
+						public void onSuccess(List<CompanyProxy> response) {
 							updateRowData(0, response);
 						}
 					});

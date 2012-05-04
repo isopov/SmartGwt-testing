@@ -55,7 +55,7 @@
 					<c:CellTree  ui:field='leftPanel' />
 				</g:west>
 				<g:north size="300">
-					<g:Label ui:field="rightTopPanel" stylePrimaryName="{style.boxed}" />
+					<c:CellTable ui:field="rightTopPanel" stylePrimaryName="{style.boxed}" />
 				</g:north>
 				<g:center>
 					<g:Label ui:field="rightBottomPanel" stylePrimaryName="{style.boxed}" />
