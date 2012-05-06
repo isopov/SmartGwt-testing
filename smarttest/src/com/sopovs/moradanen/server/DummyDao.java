@@ -23,7 +23,7 @@ public class DummyDao {
 				"Alexandrov", "Shulc" };
 		String[] descriptions = new String[] { "Student", "Professor", "Worker", "Driver", "Gardener" };
 		for (int i = 0; i < 100; i++) {
-			Person person = new Person(String.valueOf(i + 1),
+			Person person = new Person(String.valueOf(i),
 					firstNames[r.nextInt(firstNames.length)],
 					secondNames[r.nextInt(secondNames.length)],
 					descriptions[r.nextInt(descriptions.length)]);
@@ -36,7 +36,7 @@ public class DummyDao {
 	private static List<Company> createCompanies(Random r) {
 		List<Company> result = new ArrayList<Company>();
 		for (int i = 0; i < 50; i++) {
-			Company com = new Company(String.valueOf(i + 1), "Company " + (i + 1));
+			Company com = new Company(String.valueOf(i), "Company " + (i + 1));
 			com.setFocusedSectors(new ArrayList<Sector>());
 			Set<Person> uniqueWorkers = new HashSet<Person>();
 			for (int j = 0; j < r.nextInt(20); j++) {
@@ -54,8 +54,8 @@ public class DummyDao {
 		List<Sector> result = new ArrayList<Sector>();
 		Sector root = new Sector(String.valueOf(0), null, "Root");
 		result.add(root);
-		for (int i = 0; i < 60; i++) {
-			Sector sec = new Sector(String.valueOf(i + 1), result.get(r.nextInt(result.size())).getId(), "Sector "
+		for (int i = 1; i < 60; i++) {
+			Sector sec = new Sector(String.valueOf(i), result.get(r.nextInt(result.size())).getId(), "Sector "
 					+ (i + 1));
 			result.get(Integer.valueOf(sec.getParentId())).getSubSectors().add(sec);
 			Set<Company> uniqueCompaniess = new HashSet<Company>();

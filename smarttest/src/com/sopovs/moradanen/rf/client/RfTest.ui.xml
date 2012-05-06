@@ -58,7 +58,7 @@
 					<c:CellTable ui:field="rightTopPanel" stylePrimaryName="{style.boxed}" />
 				</g:north>
 				<g:center>
-					<g:Label ui:field="rightBottomPanel" stylePrimaryName="{style.boxed}" />
+					<c:CellTable ui:field="rightBottomPanel" stylePrimaryName="{style.boxed}" />
 				</g:center>
 			</g:SplitLayoutPanel>
 		</g:center>
