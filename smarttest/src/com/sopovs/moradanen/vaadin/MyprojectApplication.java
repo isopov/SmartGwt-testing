@@ -68,6 +68,8 @@ public class MyprojectApplication extends Application {
 				"/RfTest.html")));
 		result.addComponent(new Link("SmartGwt", new ExternalResource(
 				"/SmartTest.html")));
+		result.addComponent(new Link("SmartGwt", new ExternalResource(
+				"/SmartRfTest.html")));
 		result.addComponent(new Link("Vaadin", new ExternalResource("/VAADIN/")));
 		return result;
 	}

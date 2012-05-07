@@ -36,10 +36,13 @@
 					<thead>
 						<tr>
 							<th>
-								<a href="RfTest.html">RequestFactory</a>
+								<a href="RfTest.html">PureGWT(RequestFactory)</a>
 							</th>
 							<th>
-								<a href="SmartTest.html">SmartGwt</a>
+								<a href="SmartRfTest.html">SmartGwt(RequestFactory)</a>
+							</th>
+							<th>
+								<a href="SmartTest.html">SmartGwt(GWT-RPC)</a>
 							</th>
 							<th>
 								<a href="VAADIN/">Vaadin</a>
