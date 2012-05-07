@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.smartgwt.client.data.DataSource;
 import com.sopovs.moradanen.rf.smartgwt.shared.SmartRequestFactory;
-import com.sopovs.moradanen.smartgwt.client.AbstractSmartTest;
+import com.sopovs.moradanen.smartgwt.client.lib.AbstractSmartTest;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

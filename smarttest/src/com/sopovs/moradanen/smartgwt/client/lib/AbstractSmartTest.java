@@ -1,4 +1,4 @@
-package com.sopovs.moradanen.smartgwt.client;
+package com.sopovs.moradanen.smartgwt.client.lib;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.Anchor;
@@ -12,6 +12,9 @@ import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tree.TreeGrid;
+import com.sopovs.moradanen.smartgwt.client.CompanyDataSource;
+import com.sopovs.moradanen.smartgwt.client.PersonDataSource;
+import com.sopovs.moradanen.smartgwt.client.SectorDataSource;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

@@ -1,6 +1,7 @@
 package com.sopovs.moradanen.smartgwt.client;
 
 import com.smartgwt.client.data.DataSource;
+import com.sopovs.moradanen.smartgwt.client.lib.AbstractSmartTest;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.

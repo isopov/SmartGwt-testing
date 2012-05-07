@@ -21,7 +21,7 @@
   <source path='rf/smartgwt/client'/>
   <source path='rf/shared'/>
   <source path='rf/smartgwt/shared'/>
-  <source path='smartgwt/client'/>
+  <source path='smartgwt/client/lib'/>
   <source path='smartgwt/shared/lib'/>
 
 </module>
